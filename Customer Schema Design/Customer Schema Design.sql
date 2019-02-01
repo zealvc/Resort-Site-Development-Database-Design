@@ -23,12 +23,12 @@ CREATE TABLE "Type" (
 );
 
 CREATE TABLE "PhoneNumber" (
-  "CustomerID" bigint UNIQUE NOT NULL,
+  "CustomerID" bigint PRIMARY KEY,
   "Phone" varchar
 );
 
 CREATE TABLE "ExtraInformation" (
-  "CustomerID" bigint NOT NULL UNIQUE,
+  "CustomerID" bigint PRIMARY KEY,
   "School" varchar,
   "Work" varchar,
   "TimeZone" varchar,
@@ -37,7 +37,7 @@ CREATE TABLE "ExtraInformation" (
 );
 
 CREATE TABLE "SocialMedia" (
-  "CustomerID" bigint UNIQUE NOT NULL,
+  "CustomerID" bigint PRIMARY KEY,
   "FacebookID" int,
   "InstagramID" int,
   "TwitterID" int,
@@ -46,7 +46,7 @@ CREATE TABLE "SocialMedia" (
 );
 
 CREATE TABLE "LoginHistory" (
-  "CustomerID" bigint UNIQUE NOT NULL,
+  "CustomerID" bigint PRIMARY KEY,
   "Browser" varchar,
   "Device" varchar,
   "IP" varchar,
@@ -56,7 +56,7 @@ CREATE TABLE "LoginHistory" (
 );
 
 CREATE TABLE "PaymentMethod" (
-  "CustomerID" bigint UNIQUE NOT NULL,
+  "CustomerID" bigint PRIMARY KEY,
   "CardNumber" int NOT NULL,
   "CardTypeID" bigint NOT NULL,
   "CardHolderName" varchar NOT NULL,

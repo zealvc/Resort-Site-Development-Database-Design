@@ -24,13 +24,13 @@ CREATE TABLE "AccommodationType" (
 );
 
 CREATE TABLE "AccommodationImage" (
-  "AccommodationID" bigint UNIQUE,
+  "AccommodationID" bigint PRIMARY KEY,
   "Images" varchar
 );
 
 CREATE TABLE "AccommodationAmenity" (
-  "AccommodationID" bigint UNIQUE,
-  "AmenityID" int
+  "AccommodationID" bigint PRIMARY KEY,
+  "AmenityID" bigint
 );
 
 CREATE TABLE "Amenity" (
@@ -41,13 +41,13 @@ CREATE TABLE "Amenity" (
 );
 
 CREATE TABLE "Accessibility" (
-  "AccommodationID" bigint UNIQUE NOT NULL,
+  "AccommodationID" bigint PRIMARY KEY,
   "AccessibilityNameID" bigint,
   "Description" varchar
 );
 
 CREATE TABLE "AccessibilityName" (
-  "ID" bigserial PRIMARY KEY NOT NULL,
+  "ID" bigserial PRIMARY KEY,
   "Name" varchar NOT NULL
 );
 
@@ -63,7 +63,7 @@ CREATE TABLE "Location" (
 );
 
 CREATE TABLE "AccommodationHouseRule" (
-  "AccommodationID" bigint UNIQUE NOT NULL,
+  "AccommodationID" bigint PRIMARY KEY,
   "HouseRuleID" bigint,
   "HouseRuleDescription" varchar
 );
@@ -74,7 +74,7 @@ CREATE TABLE "HouseRule" (
 );
 
 CREATE TABLE "Rating" (
-  "AccommodationID" bigint UNIQUE NOT NULL,
+  "AccommodationID" bigint PRIMARY KEY,
   "CustomerID" bigint NOT NULL,
   "Star" int NOT NULL,
   "Comment" varchar,
@@ -131,7 +131,7 @@ ALTER TABLE "AccommodationAmenity" ADD FOREIGN KEY ("AccommodationID") REFERENCE
 
 ALTER TABLE "AccommodationHouseRule" ADD FOREIGN KEY ("HouseRuleID") REFERENCES "HouseRule" ("ID");
 
-ALTER TABLE "AccommodationHouseRule" ADD FOREIGN KEY ("AccommodationID") REFERENCES "Accommodation" ("CategoryID");
+ALTER TABLE "AccommodationHouseRule" ADD FOREIGN KEY ("AccommodationID") REFERENCES "Accommodation" ("ID");
 
 ALTER TABLE "Reservation" ADD FOREIGN KEY ("AccommodationID") REFERENCES "Accommodation" ("ID");
 
