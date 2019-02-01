@@ -3,12 +3,12 @@ set SEARCH_PATH to customer;
 
 CREATE TABLE "Customer" (
   "ID" bigserial PRIMARY KEY NOT NULL,
-  "ProfilePhoto" varchar NOT NULL,
+  "ProfilePhoto" varchar,
   "FirstName" varchar NOT NULL,
   "LastName" varchar NOT NULL,
   "Email" varchar UNIQUE NOT NULL,
   "Password" varchar UNIQUE NOT NULL,
-  "TypeID" int NOT NULL,
+  "TypeID" bigint NOT NULL,
   "Gender" int NOT NULL,
   "DateOfBirth" date NOT NULL,
   "About" varchar,
@@ -23,21 +23,21 @@ CREATE TABLE "Type" (
 );
 
 CREATE TABLE "PhoneNumber" (
-  "CustomerID" int UNIQUE NOT NULL,
+  "CustomerID" bigint UNIQUE NOT NULL,
   "Phone" varchar
 );
 
 CREATE TABLE "ExtraInformation" (
-  "CustomerID" int NOT NULL UNIQUE,
+  "CustomerID" bigint NOT NULL UNIQUE,
   "School" varchar,
   "Work" varchar,
   "TimeZone" varchar,
   "EmergencyContact" varchar,
-  "Occupation" varchar NULL
+  "Occupation" varchar
 );
 
 CREATE TABLE "SocialMedia" (
-  "CustomerID" int UNIQUE NOT NULL,
+  "CustomerID" bigint UNIQUE NOT NULL,
   "FacebookID" int,
   "InstagramID" int,
   "TwitterID" int,
@@ -46,7 +46,7 @@ CREATE TABLE "SocialMedia" (
 );
 
 CREATE TABLE "LoginHistory" (
-  "CustomerID" int UNIQUE NOT NULL,
+  "CustomerID" bigint UNIQUE NOT NULL,
   "Browser" varchar,
   "Device" varchar,
   "IP" varchar,
@@ -56,9 +56,9 @@ CREATE TABLE "LoginHistory" (
 );
 
 CREATE TABLE "PaymentMethod" (
-  "CustomerID" int UNIQUE NOT NULL,
+  "CustomerID" bigint UNIQUE NOT NULL,
   "CardNumber" int NOT NULL,
-  "CardTypeID" int NOT NULL,
+  "CardTypeID" bigint NOT NULL,
   "CardHolderName" varchar NOT NULL,
   "ExpiryDate" timestamp NOT NULL,
   "IssuingBank" varchar NOT NULL

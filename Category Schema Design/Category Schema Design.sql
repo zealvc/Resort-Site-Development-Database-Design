@@ -1,5 +1,5 @@
 show SEARCH_PATH;
-set SEARCH_PATH to payment;
+set SEARCH_PATH to customer;
 
 CREATE TABLE "Category"
 (
