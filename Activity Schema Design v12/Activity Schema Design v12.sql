@@ -1,14 +1,13 @@
 CREATE TABLE "Activity" (
-  "ID" int,
-  "Name" varchar,
-  "ActivityTypeID" varchar,
-  "ReservationStatus" varchar,
+  "ID" bigserial PRIMARY KEY,
+  "CategoryID" bigint NOT NULL,
+  "Name" varchar NOT NULL,
+  "ActivityTypeID" varchar NOT NULL,
+  "Duration" timestamp,
   "PricePerPerson" varchar,
-  "Duration" int,
-  "CreditCardID" int,
-  "Language" varchar,
+  "LanguageAvailable" varchar,
   "Include" varchar,
-  "LocationID" int,
+  "LocationID" bigint,
   "Host" varchar,
   "ToDo" varchar,
   "Provide" varchar,
@@ -16,48 +15,52 @@ CREATE TABLE "Activity" (
   "OtherDescription" varchar,
   "GroupSize" int,
   "WhoCanCome" varchar,
-  "CancellationPolicy" varchar
-);
-
-CREATE TABLE "Location" (
-  "ID" bigserial,
-  "Name" varchar,
-  "Address" varchar,
-  "Description" varchar,
-  "Distance" varchar,
-  "DistanceDescription" varchar,
-  "Longitude" float,
-  "Latitude" float
+  "CancellationPolicy" varchar,
+  "LanguageID" bigint
 );
 
 CREATE TABLE "ActivityType" (
   "ID" int,
-  "Name" varchar
+  "Name" varchar,
+  "LanguageID" int
+);
+
+CREATE TABLE "Location" (
+  "ID" bigserial PRIMARY KEY,
+  "Name" varchar NOT NULL,
+  "Address" varchar NOT NULL,
+  "Description" varchar,
+  "Distance" varchar,
+  "DistanceDescription" varchar,
+  "Longitude" float,
+  "Latitude" float,
+  "LanguageID" bigint
 );
 
 CREATE TABLE "Reservation" (
-  "ID" bigserial,
-  "CustomerID" int,
-  "ActivityID" int,
+  "ID" bigserial PRIMARY KEY,
+  "UserID" bigint,
+  "ActivityID" bigint,
   "Adult" int,
   "Children" int,
   "Infant" int,
-  "Date" timestamp,
+  "Date" timestamp with time zone,
   "AmountPaid" decimal,
   "RefundPaid" decimal,
-  "Created" timestamp,
-  "Modified" timestamp,
-  "CancellationDate" timestamp,
-  "Status" varchar
+  "Created" timestamp with time zone,
+  "Modified" timestamp with time zone,
+  "CancellationDate" timestamp with time zone,
+  "Status" varchar,
+  "LanguageID" bigint
 );
 
 CREATE TABLE "Rating" (
   "ActivityID" int UNIQUE,
-  "CustomerID" int,
-  "Star" int,
+  "UserID" bigint,
+  "Star" bigint,
   "Comment" varchar,
-  "Date" timestamp,
-  "Modified" timestamp
+  "Date" timestamp with time zone,
+  "Modified" timestamp with time zone
 );
 
 ALTER TABLE "Activity" ADD FOREIGN KEY ("LocationID") REFERENCES "Location" ("ID");
